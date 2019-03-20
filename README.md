@@ -12,4 +12,6 @@ FulltextRetrievalSystem/packages/Xapian.1.2.23/的_XapianSharp.dll和zlib1.dll�
 
 CrawlPart是爬虫操作相关文件夹，PushFunction是邮件推送文件夹，ScheduledTask是任务爬虫和任务推送文件夹，XapianPart是数据库文件夹，WebView是网站，WebCommon是数据交互层。  
 
+如果要配置路径之类的东西，请注意修改web.config或者app.config的对应内容！  
+
 代码天长日久没动过了，今天把它们拿出来通通风，如果有bug，这是很可能的，请见谅！
