@@ -1,0 +1,48 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<body style="background-color:#e6e6e6;">
+    <div id="navbar" class="navbar navbar-default navbar-fixed-top ace-save-state" style="background-color:#e6e6e6;">
+        <div class="navbar-container ace-save-state" id="navbar-container">
+            <div class="navbar-header pull-left">
+                <a href="@Url.Action("Index","Home")" class="navbar-brand">
+                    <small style="font-size:90%">
+                        全文检索系统
+                    </small>
+                </a>
+            </div>
+            <div class="navbar-buttons navbar-header pull-right">
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+
+    <div style="text-align:center;margin-top:40px">
+        <h3>想要查什么？</h3>
+    </div>
+
+    @using (Html.BeginForm("Result", "Home", FormMethod.Get))
+    {
+        <form class="form-search">
+           <div class="row">
+               <div class="col-xs-12 col-sm-8"style ="padding-left:20%;width:80%;margin-top:20px">
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="ace-icon fa fa-check"></i>
+                        </span>
+                        
+                    <input type="text" name="Search" class="form-control search-query input-xxlarge" placeholder="输入要查询的内容" />
+                        <span class="input-group-btn">
+                            <button type="submit" class="btn btn-inverse btn-white">
+                                <span class="ace-icon fa fa-search icon-on-right bigger-110"></span>
+                                搜索
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </form>
+     }
+
+</body>
+

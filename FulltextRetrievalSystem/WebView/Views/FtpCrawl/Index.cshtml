@@ -1,0 +1,63 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/admin_Layout.cshtml";
+}
+
+<p>
+    @Html.ActionLink("新建FtpURI", "Create") 
+</p>
+
+<table class="table">
+    @{int i = 0;}
+    @foreach (var item in ViewBag.FtpList)
+    {
+        <tr>
+            <td>
+                <p hidden>FtpCount: @item.FtpCount</p>
+                @(++i)、 &nbsp; 链接: @item.Link &nbsp; 代号: @item.NickName &nbsp; 登录用户名: @item.UserName &nbsp; 密码:@item.UserPassword
+            </td>
+            <td>
+                @Html.ActionLink("编辑FtpURI", "Edit", new { item.FtpCount, item.Link })|
+                @Html.ActionLink("删除FtpURI", "Delete", new { item.FtpCount, item.Link })
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+<p>
+    @Html.ActionLink("新建Ftp禁爬文件夹", "CreateBan")
+</p>
+
+<table class="table">
+    @{int j = 0;}
+    @foreach (var item in ViewBag.Banlist)
+    {
+        <tr>
+            <td>
+                @(++j)、 &nbsp; 禁爬文件夹: @item
+            </td>
+            <td>
+                @Html.ActionLink("删除禁爬信息", "DeleteBan", new { item })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<!--[if !IE]> -->
+<script src="~/Scripts/jquery-2.1.4.min.js"></script>
+<!-- <![endif]-->
+<!--[if IE]>
+<script src="/Scripts/jquery-1.11.3.min.js"></script>
+<![endif]-->
+
+
+<script type="text/javascript">
+$(function () {
+    $(".nav-list>li:eq(1)").addClass("active open").siblings().removeClass("active");
+    $(".submenu:eq(0)>li:eq(1)").addClass("active").siblings().removeClass("active");
+})
+</script>

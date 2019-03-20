@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/admin_Layout.cshtml";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            代号:
+            <input type="text" name="NickNameEdit" class="form-control search-query input-xxlarge" value="@ViewBag.NickName" />
+            起始IP:
+            <input type="text" name="StartIPEdit" class="form-control search-query input-xxlarge" value="@ViewBag.StartIP" />
+            终止IP:
+            <input type="text" name="EndIPEdit" class="form-control search-query input-xxlarge" value="@ViewBag.EndIP" />
+
+        </div>
+    </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="保存修改" class="btn btn-default" />
+            </div>
+        </div>
+}
+
+<!--[if !IE]> -->
+<script src="~/Scripts/jquery-2.1.4.min.js"></script>
+<!-- <![endif]-->
+<!--[if IE]>
+<script src="/Scripts/jquery-1.11.3.min.js"></script>
+<![endif]-->
+
+<script type="text/javascript">
+$(function () {
+    $(".nav-list>li:eq(1)").addClass("active open").siblings().removeClass("active");
+    $(".submenu:eq(0)>li:eq(2)").addClass("active").siblings().removeClass("active");
+})
+</script>
+

@@ -1,0 +1,59 @@
+﻿<div class="row">
+    <div class="col-xs-12">
+        <div>
+            <div class="row search-page" id="search-page-2">
+                <div class="col-xs-12 col-md-10">
+                    <div class="no-margin-bottom" style="padding-left:3%">
+                        <span class="grey">About @ViewBag.Ansnum results (@ViewBag.time milliseconds)</span>
+                    </div>
+            @if (ViewBag.ZeroCheck == "0")
+            {
+             @TempData["Zero"];
+            }
+            else
+            {
+                    foreach (var item in ViewBag.WebContent)
+                    {
+                        <div class="search-results">
+
+                            <div class="search-result">
+                                <h5 class="search-title">
+                                    <a href="@item.ahref">@Html.Raw(item.title)</a>
+                                </h5>
+                                <a class="text-success" href="@item.ahref">@item.ahref</a> 
+
+                                <p class="search-content">
+                                    @Html.Raw(item.snippet)
+                                </p>
+                            </div>
+                        </div>
+                    }
+            }
+
+             <!--       <div class="search-area" style="padding-left:1%">
+                        <ul class="pagination">
+                            <li class="disabled">
+                                <a href="#">
+                                    <i class="ace-icon fa fa-angle-double-left"></i>
+                                </a>
+                            </li>
+                            for (int i = 0; i < ViewBag.PageCount; i++)
+                            {
+                                <li class="">
+                                    <a href="#">(i+1)</a>
+                                </li>
+                            }
+                            <li>
+                                <a href="#">
+                                    <i class="ace-icon fa fa-angle-double-right"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGE CONTENT ENDS -->
+    </div><!-- /.col -->
+</div><!-- /.row -->

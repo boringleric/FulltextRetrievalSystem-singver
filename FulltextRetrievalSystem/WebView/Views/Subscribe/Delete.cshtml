@@ -1,0 +1,60 @@
+﻿
+@{
+    if (User.IsInRole("Admin"))
+    {
+        Layout = "~/Views/Shared/admin_Layout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/user_Layout.cshtml";
+    }
+}
+
+<h3>你确认要删除此订阅？？ </h3>
+<p>删除后将不会再继续推送该订阅更新内容！！！</p>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.Label("将要删除的订阅词")
+        </dt>
+
+        <dd>
+            @ViewBag.SearchWord
+        </dd>
+    </dl>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="删除订阅" class="btn btn-default" /> |
+            @Html.ActionLink("返回订阅列表", "Index")
+        </div>
+    }
+</div>
+
+<!--[if !IE]> -->
+<script src="~/Scripts/jquery-2.1.4.min.js"></script>
+<!-- <![endif]-->
+<!--[if IE]>
+<script src="/Scripts/jquery-1.11.3.min.js"></script>
+<![endif]-->
+
+@if (User.IsInRole("Admin"))
+{
+    <script type="text/javascript">
+    $(function () {
+        $(".nav-list>li:eq(3)").addClass("active").siblings().removeClass("active");
+        })
+    </script>
+}
+else
+{
+    <script type="text/javascript">
+    $(function () {
+        $(".nav-list>li:eq(1)").addClass("active").siblings().removeClass("active");
+        })
+    </script>
+}
+

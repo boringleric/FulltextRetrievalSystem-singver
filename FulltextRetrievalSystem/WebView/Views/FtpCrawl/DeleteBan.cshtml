@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "DeleteBan";
+    Layout = "~/Views/Shared/admin_Layout.cshtml";
+}
+
+
+<h3>你确认要删除此禁用条件？？ </h3>
+<p>删除后将会再继续抓取该文件夹内容！！！</p>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.Label("将要删除的Ftp禁抓文件夹")
+        </dt>
+
+        <dd>
+            @ViewBag.Link
+        </dd>
+    </dl>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="删除FtpBan" class="btn btn-default" /> |
+            @Html.ActionLink("返回FtpURI列表", "Index")
+        </div>
+    }
+</div>
+
+<!--[if !IE]> -->
+<script src="~/Scripts/jquery-2.1.4.min.js"></script>
+<!-- <![endif]-->
+<!--[if IE]>
+<script src="/Scripts/jquery-1.11.3.min.js"></script>
+<![endif]-->
+
+<script type="text/javascript">
+$(function () {
+    $(".nav-list>li:eq(1)").addClass("active open").siblings().removeClass("active");
+    $(".submenu:eq(0)>li:eq(1)").addClass("active").siblings().removeClass("active");
+})
+</script>
+

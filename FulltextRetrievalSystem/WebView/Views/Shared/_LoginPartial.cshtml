@@ -1,0 +1,48 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="dropdown" style="margin-top:8px; margin-right:10px">
+            <button type="button" class="btn dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" style="background-color:#e6e6e6 !important">
+                @Html.ActionLink(User.Identity.GetUserName(), "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", style = "text-shadow:0px 0px 0px" })
+                <span class="caret"></span>
+            </button>
+            <ul class="nav dropdown-menu" role="menu" aria-labelledby="dropdownMenu1" style="min-width:16px">
+                @if (User.IsInRole("Admin"))
+                {
+                    <li role="presentation">
+                        <a role="menuitem" tabindex="-1" href="@Url.Action("AllState","States")">
+                            <i class="ace-icon fa fa-cog"></i>
+                            系统管理
+                        </a>
+                    </li>
+                }
+                else
+                {
+                    <li role="presentation">
+                        <a role="menuitem" tabindex="-1" href="@Url.Action("UserCenter","UserStates")">
+                            <i class="ace-icon fa fa-user"></i>
+                            个人中心
+                        </a>
+                    </li>
+                }
+                <li role="presentation" class="divider"></li>
+                <li role="presentation">
+                    <a role="menuitem" tabindex="-1" href="javascript:document.getElementById('logoutForm').submit()">
+                        <i class="ace-icon fa fa-power-off"></i>
+                        注销
+                    </a>
+                </li>
+            </ul>
+        </div>
+    }
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("注册", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li>@Html.ActionLink("登录", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>
+}

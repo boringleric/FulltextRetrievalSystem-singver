@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "UserCenter";
+    Layout = "~/Views/Shared/user_Layout.cshtml";
+}
+<h4>简要提示：</h4>
+<h3>1、点击左侧订阅管理，可以增删订阅词。</h3>
+
+<h3>2、点击左侧修改密码，可以修改密码。</h3>
+
+<h3>3、点击右侧顶部邮件处，可以退出登录。</h3>
+
+<!--[if !IE]> -->
+<script src="~/Scripts/jquery-2.1.4.min.js"></script>
+<!-- <![endif]-->
+<!--[if IE]>
+<script src="/Scripts/jquery-1.11.3.min.js"></script>
+<![endif]-->
+
+
+<script type="text/javascript">
+$(function () {
+    $(".nav-list>li:eq(0)").addClass("active").siblings().removeClass("active");
+})
+</script>

@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "AllState";
+    Layout = "~/Views/Shared/admin_Layout.cshtml";
+}
+
+<h3>简要操作提示</h3>
+<h4>1、左侧点开管理用户和订阅信息。</h4>
+<h4>2、爬虫需要设置windows系统的计划任务，计划任务时间到会自动执行。</h4>
+    
+<!--[if !IE]> -->
+<script src="~/Scripts/jquery-2.1.4.min.js"></script>
+<!-- <![endif]-->
+<!--[if IE]>
+<script src="/Scripts/jquery-1.11.3.min.js"></script>
+<![endif]-->
+
+<script>
+$(function () {
+    $(".nav nav-list>li:eq(0)").addClass("active").siblings().removeClass("active");
+})
+</script>

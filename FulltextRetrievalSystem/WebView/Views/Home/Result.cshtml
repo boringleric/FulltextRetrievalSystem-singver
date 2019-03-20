@@ -1,0 +1,187 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<style>
+    em {
+        font-style: normal;
+        color: #c00
+    }
+</style>
+<body style="background-color:#e6e6e6;">
+    <div id="navbar" class="navbar navbar-default navbar-fixed-top ace-save-state" style="background-color:#e6e6e6;">
+        <div class="navbar-container ace-save-state" id="navbar-container">
+
+            <a href="@Url.Action("Index","Home")" class="navbar-brand" style="margin-top:8px">
+                <small style="font-size:90%">
+                    Search
+                </small>
+            </a>
+            @using (Html.BeginForm("Result", "Home", FormMethod.Get))
+            {
+                <form class="form-search">
+
+                    <div class="col-xs-12 col-sm-8" style="width:45%;margin-top:10px">
+                        <div class="input-group">
+                            <input type="text" name="Search" class="form-control search-query input-xxlarge" value="@ViewBag.SearchWord" />
+                            <span class="input-group-btn">
+                                <button type="submit" class="btn btn-inverse btn-white">
+                                    <span class="ace-icon fa fa-search icon-on-right bigger-110"></span>
+                                    搜索
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+
+                </form>
+            }
+        </div>
+        <div class="navbar-buttons navbar-header pull-right">
+            @Html.Partial("_LoginPartial")
+        </div>
+    </div>
+
+    <nav class="navbar navbar-default" role="navigation" style="margin-top: 1%; margin-left: 1%; background-color: rgb(230, 230, 230);">
+        <div class="container-fluid">
+            <ul class="nav navbar-nav">
+                @if (User.IsInRole("Admin") || User.IsInRole("Sec"))
+                {
+                    <li class="active"><a href="@Url.Action("Result", "Home", new { search = ViewBag.SearchWord, filter = 0, page = 1 })">全部</a></li>
+                }
+                else
+                {
+                    <li class="active"><a href="@Url.Action("Result", "Home", new { search = ViewBag.SearchWord, filter = 5, page = 1 })">全部</a></li>
+                }
+                
+                <li><a href="@Url.Action("Result", "Home", new { search = ViewBag.SearchWord, filter = 1, page = 1 })">网页</a></li>
+                <li><a href="@Url.Action("Result", "Home", new { search = ViewBag.SearchWord, filter = 2, page = 1 })">FTP</a></li>
+                <li><a href="@Url.Action("Result", "Home", new { search = ViewBag.SearchWord, filter = 3, page = 1 })">共享</a></li>
+            </ul>
+        </div>
+    </nav>
+
+   <!-- Html.Partial("_ShowPartial")-->
+    <div class="row">
+        <div class="col-xs-12">
+            <div>
+                <div class="row search-page" id="search-page-2">
+                    <div class="col-xs-12 col-md-10">
+                        <div class="no-margin-bottom" style="padding-left:3%">
+                            <span class="grey">About @ViewBag.Ansnum results (@ViewBag.time seconds)</span>                        
+                        </div>
+                        @if (ViewBag.ZeroCheck == "0")
+                        {
+                            @TempData["Zero"];
+                        }
+                        else
+                        {
+                            foreach (var item in ViewBag.WebContent)
+                            {
+                                    <div class="search-results">
+                                        <div class="search-result">
+                                            <h5 class="search-title">
+                                                <a href="@item.ahrefencode" target="_blank">@Html.Raw(item.title)</a>
+                                            </h5>
+                                            <a class="text-success" href="@item.ahrefencode" target="_blank">@item.ahref</a>
+
+                                            <p class="search-content">
+                                                @Html.Raw(item.snippet)
+                                            </p>
+                                        </div>
+                                    </div>
+                            }
+                        }   
+                        @{
+                            uint page = 0;
+                            uint formerpage = 0;
+                            uint latorpage = 0;
+                            uint finalpage = 0;
+                            if (ViewBag.ZeroCheck != "0")
+                            {
+                                if (ViewBag.PageCount == 0)
+                                {
+                                    page = 1;
+                                    formerpage = 1;
+                                    latorpage = 1;
+                                    finalpage = 1;
+                                }
+                                else
+                                {
+                                    page = uint.Parse(ViewBag.Page);
+                                    if (page == 0)
+                                    {
+                                        ++page;
+                                    }
+                                    formerpage = page - 1;
+                                    latorpage = page + 1;
+                                    if (latorpage > ViewBag.PageCount)
+                                    {
+                                        latorpage = ViewBag.PageCount;
+                                    }
+                                    if (page + 5 >= ViewBag.PageCount)
+                                    {
+                                        finalpage = ViewBag.PageCount;
+                                    }
+                                    else
+                                    {
+                                        finalpage = page + 5;
+                                    }
+                                }
+                            }
+                        }        
+                        <div class="search-area" style="padding-left:1%">
+                            <ul class="pagination">
+                                <li class="">
+                                    <a href="@Url.Action("Result", "Home", new { search = ViewBag.SearchWord, filter = ViewBag.Filter, page = formerpage })">
+                                        <i class="ace-icon fa fa-angle-double-left"></i>
+                                    </a>
+                                </li>
+                                @{
+                                    if (ViewBag.PageCount == 0)
+                                    {
+                                        <li class="">
+                                            <a href="@Url.Action("Result", "Home", new { search = ViewBag.SearchWord, filter = ViewBag.Filter, page = 1})">1</a>
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        for (uint i = page; i <= finalpage; i++)
+                                        {
+                                            <li class="">
+                                                <a href="@Url.Action("Result", "Home", new { search = ViewBag.SearchWord, filter = ViewBag.Filter, page = i})">@(i)</a>
+                                            </li>
+                                        }
+                                    }
+                                }
+                               
+                                <li>
+                                    <a href="@Url.Action("Result", "Home", new { search = ViewBag.SearchWord, filter = ViewBag.Filter, page = latorpage })">
+                                        <i class="ace-icon fa fa-angle-double-right"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>                   
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAGE CONTENT ENDS -->
+        </div><!-- /.col -->
+    </div><!-- /.row -->
+
+    <!--[if !IE]> -->
+    <script src="~/Scripts/jquery-2.1.4.min.js"></script>
+    <!-- <![endif]-->
+    <!--[if IE]>
+    <script src="/Scripts/jquery-1.11.3.min.js"></script>
+    <![endif]-->
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("button").click(function () {
+                $("p#extend").toggle();
+            });
+});
+    </script>
+
+</body>
+

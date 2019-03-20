@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewBag.Title = "CreateBan";
+    Layout = "~/Views/Shared/admin_Layout.cshtml";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true)
+        <h3>
+            请注意，禁用链接不可为空，不可重复，否则无法提交！
+        </h3>
+        <div class="form-group">
+            禁用链接:
+            <input type="text" name="Link" class="form-control search-query input-xxlarge" placeholder="192.168.37.130/动态论文" />
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="创建禁用信息" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("返回FtpURI列表", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<!--[if !IE]> -->
+<script src="~/Scripts/jquery-2.1.4.min.js"></script>
+<!-- <![endif]-->
+<!--[if IE]>
+<script src="/Scripts/jquery-1.11.3.min.js"></script>
+<![endif]-->
+
+<script type="text/javascript">
+$(function () {
+    $(".nav-list>li:eq(1)").addClass("active open").siblings().removeClass("active");
+    $(".submenu:eq(0)>li:eq(1)").addClass("active").siblings().removeClass("active");
+})
+</script>

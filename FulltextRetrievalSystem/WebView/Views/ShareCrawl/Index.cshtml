@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/admin_Layout.cshtml";
+}
+
+
+<p>
+    @Html.ActionLink("新建ShareURI", "Create")
+</p>
+
+<table class="table">
+    @{int i = 0;}
+    @foreach (var item in ViewBag.ShareList)
+    {
+        <tr>
+            <td>
+                <p hidden>ShareCount: @item.ShareCount</p>
+                @(++i)、 &nbsp; 代号: @item.NickName &nbsp; 开始IP: @item.StartIP &nbsp; 结束IP: @item.EndIP
+            </td>
+            <td>
+                @Html.ActionLink("编辑ShareURI", "Edit", new { item.ShareCount, item.StartIP })|
+                @Html.ActionLink("删除ShareURI", "Delete", new { item.ShareCount, item.StartIP })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<!--[if !IE]> -->
+<script src="~/Scripts/jquery-2.1.4.min.js"></script>
+<!-- <![endif]-->
+<!--[if IE]>
+<script src="/Scripts/jquery-1.11.3.min.js"></script>
+<![endif]-->
+
+
+<script type="text/javascript">
+$(function () {
+    $(".nav-list>li:eq(1)").addClass("active open").siblings().removeClass("active");
+    $(".submenu:eq(0)>li:eq(2)").addClass("active").siblings().removeClass("active");
+})
+</script>
+
+

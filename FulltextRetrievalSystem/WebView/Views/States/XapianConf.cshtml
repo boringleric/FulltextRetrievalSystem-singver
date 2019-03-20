@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewBag.Title = "XapianConf";
+    Layout = "~/Views/Shared/admin_Layout.cshtml";
+}
+
+
+
+<table class="table">
+    <tr>
+        <th>
+            <h2>数据库路径： @ViewBag.DBName</h2>
+        </th>
+
+    </tr>
+    <tr>
+        <th>
+            数据库大小：@ViewBag.DBSize
+        </th>
+    </tr>
+    <tr>
+        <th>
+            平均文本长度：@ViewBag.DocAveLength
+        </th>
+    </tr>
+    <tr>
+        <th>
+            数据库文档计数：@ViewBag.DocCount
+        </th>
+    </tr>
+    <tr>
+        <th>
+            最后一条数据id：@ViewBag.DocLastId
+        </th>
+    </tr>
+</table>
+
+
+<!--[if !IE]> -->
+<script src="~/Scripts/jquery-2.1.4.min.js"></script>
+<!-- <![endif]-->
+<!--[if IE]>
+<script src="/Scripts/jquery-1.11.3.min.js"></script>
+<![endif]-->
+
+<script type="text/javascript">
+$(function () {
+    $(".nav-list>li:eq(1)").addClass("active open").siblings().removeClass("active");
+    $(".submenu:eq(0)>li:eq(3)").addClass("active").siblings().removeClass("active");
+})
+</script>

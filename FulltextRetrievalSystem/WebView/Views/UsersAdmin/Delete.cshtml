@@ -1,0 +1,42 @@
+﻿@model WebView.Models.ApplicationUser
+@{
+    ViewBag.Title = "删除用户";
+    Layout = "~/Views/Shared/admin_Layout.cshtml";
+}
+
+<h3>您确认要删除这个用户吗？？</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.Label("用户名称：")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-actions no-color">
+            <input type="submit" value="删除用户" class="btn btn-default" /> |
+            @Html.ActionLink("返回用户列表", "Index")
+        </div>
+    }
+</div>
+
+<!--[if !IE]> -->
+<script src="~/Scripts/jquery-2.1.4.min.js"></script>
+<!-- <![endif]-->
+<!--[if IE]>
+<script src="/Scripts/jquery-1.11.3.min.js"></script>
+<![endif]-->
+
+<script type="text/javascript">
+$(function () {
+    $(".nav-list>li:eq(2)").addClass("active open").siblings().removeClass("active");
+    $(".submenu:eq(1)>li:eq(0)").addClass("active").siblings().removeClass("active");
+})
+</script>

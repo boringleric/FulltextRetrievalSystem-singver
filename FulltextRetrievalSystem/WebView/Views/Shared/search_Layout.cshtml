@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - 搜索引擎</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <div class="navbar-fixed-top">
+       <div class="navbar-header">
+           @Html.ActionLink("龟速检索", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+       </div>
+        <div class="col-lg-6" style="padding-top:10px;padding-left:10px;padding-right:0px">
+        @using (Html.BeginForm("Result", "Home", FormMethod.Get))
+        {
+           <div class="input-group">
+                <input type="text" name="Search" class="form-control input-group-lg" style="height:35px" value="@ViewBag.SearchWord">
+                <span class="input-group-btn">
+                    <button class="btn btn-primary" type="button" style="height:35px">找找有没有</button>
+                </span>
+            </div><!-- /input-group -->
+        }
+        </div><!-- /.col-lg-6 -->
+           @Html.Partial("_LoginPartial")
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

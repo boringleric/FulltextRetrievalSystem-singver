@@ -1,0 +1,59 @@
+﻿
+@{
+    if (User.IsInRole("Admin"))
+    {
+        Layout = "~/Views/Shared/admin_Layout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/user_Layout.cshtml";
+    }
+}
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            要添加的订阅词/路径:
+            <input type="text" name="SearchWord" class="form-control search-query input-xxlarge" placeholder="想订阅的检索词/路径" />
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="创建订阅" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<!--[if !IE]> -->
+<script src="~/Scripts/jquery-2.1.4.min.js"></script>
+<!-- <![endif]-->
+<!--[if IE]>
+<script src="/Scripts/jquery-1.11.3.min.js"></script>
+<![endif]-->
+
+@if (User.IsInRole("Admin"))
+{
+    <script type="text/javascript">
+    $(function () {
+        $(".nav-list>li:eq(3)").addClass("active").siblings().removeClass("active");
+        })
+    </script>
+}
+else
+{
+    <script type="text/javascript">
+    $(function () {
+        $(".nav-list>li:eq(1)").addClass("active").siblings().removeClass("active");
+        })
+    </script>
+}
+

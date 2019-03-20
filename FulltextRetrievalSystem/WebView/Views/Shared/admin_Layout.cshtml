@@ -1,0 +1,247 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+
+    <meta name="description" content="overview &amp; stats" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+    <!-- bootstrap & fontawesome -->
+    <link rel="stylesheet" href="~/Content/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/fonts/font-awesome/4.5.0/css/font-awesome.min.css" />
+
+    <!-- ace styles -->
+    <link rel="stylesheet" href="~/Content/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
+
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/Content/css/ace-part2.min.css" class="ace-main-stylesheet" />
+    <![endif]-->
+    <link rel="stylesheet" href="~/Content/css/ace-skins.min.css" />
+    <link rel="stylesheet" href="~/Content/css/ace-rtl.min.css" />
+
+    <!--[if lte IE 9]>
+      <link rel="stylesheet" href="/Content/css/ace-ie.min.css" />
+    <![endif]-->
+    <!-- inline styles related to this page -->
+    <!-- ace settings handler -->
+    <script src="~/Scripts/ace-extra.min.js"></script>
+
+    <!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
+    <!--[if lte IE 8]>
+    <script src="/Scripts/html5shiv.min.js"></script>
+    <script src="/Scripts/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body class="no-skin">
+    <div id="navbar" class="navbar navbar-default ace-save-state">
+        <div class="navbar-container ace-save-state" id="navbar-container">
+            <button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar">
+                <span class="sr-only">Toggle sidebar</span>
+
+                <span class="icon-bar"></span>
+
+                <span class="icon-bar"></span>
+
+                <span class="icon-bar"></span>
+            </button>
+
+            <div class="navbar-header pull-left">
+                <a href="@Url.Action("Index","Home")" class="navbar-brand">
+                    <small>
+                        <i class="fa fa-legal"></i>
+                        全文检索管理系统
+                    </small>
+                </a>
+            </div>
+
+            <div class="navbar-buttons navbar-header pull-right" role="navigation">
+                <ul class="nav ace-nav">
+                    @Html.Partial("_LoginPartial")
+                </ul>
+            </div>
+        </div><!-- /.navbar-container -->
+    </div>
+
+    <div class="main-container ace-save-state" id="main-container">
+        <script type="text/javascript">
+				try{ace.settings.loadState('main-container')}catch(e){}
+        </script>
+
+        <div id="sidebar" class="sidebar responsive ace-save-state">
+            <script type="text/javascript">
+					try{ace.settings.loadState('sidebar')}catch(e){}
+            </script>
+            <ul class="nav nav-list">
+                <li class="active">
+                    <a href="@Url.Action("AllState","States")">
+                        <i class="menu-icon fa fa-tachometer"></i>
+                        <span class="menu-text"> 控制台 </span>
+                    </a>
+                </li>
+
+                <li class="">
+                    <a href="#" class="dropdown-toggle">
+                        <i class="menu-icon fa fa-desktop"></i>
+                        <span class="menu-text"> 系统配置 </span>
+
+                        <b class="arrow fa fa-angle-down"></b>
+                    </a>
+
+                    <ul class="submenu">
+                        <li class="">
+                            <a href="@Url.Action("WebCrawlConf","States")">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                Web爬虫配置
+                            </a>
+                        </li>
+
+                        <li class="">
+                            <a href="@Url.Action("FtpCrawlConf","States")">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                Ftp爬虫配置
+                            </a>
+                        </li>
+
+                        <li class="">
+                            <a href="@Url.Action("ShareCrawlConf","States")">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                Share爬虫配置
+                            </a>
+                        </li>
+
+                        <li class="">
+                            <a href="@Url.Action("XapianConf","States")">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                Xapian配置
+                            </a>
+                        </li>
+
+                        <li class="">
+                            <a href="@Url.Action("PageResolveConf","States")">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                Html页面解析维护
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="">
+                    <a href="#" class="dropdown-toggle">
+                        <i class="menu-icon fa fa-list"></i>
+                        <span class="menu-text"> 用户管理 </span>
+                        <b class="arrow fa fa-angle-down"></b>
+                    </a>
+                    <ul class="submenu">
+                        <li class="">
+                            <a href="@Url.Action("UsersManagement", "States")">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                用户维护
+                            </a>
+                        </li>
+
+                        <li class="">
+                            <a href="@Url.Action("RolesManagement", "States")">
+                                <i class="menu-icon fa fa-caret-right"></i>
+                                角色维护
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                               
+                <li class="">
+                    <a href="@Url.Action("UsrSubsManagement","States")">
+                        <i class="menu-icon fa fa-list-alt"></i>
+                        <span class="menu-text"> 订阅管理 </span>
+                    </a>
+                    <b class="arrow"></b>
+                </li>
+
+                <li class="">
+                    <a href="@Url.Action("UserProfile","States")">
+                        <i class="menu-icon fa fa-tag"></i>
+                        <span class="menu-text"> 修改密码 </span>
+                    </a>
+                </li>
+            </ul><!-- /.nav-list -->
+
+            <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
+                <i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="main-content-inner">
+                <div class="breadcrumbs ace-save-state" id="breadcrumbs">
+                    <ul class="breadcrumb">
+                        <li>
+                            <i class="ace-icon fa fa-home home-icon"></i>
+                            <a href="#">主页</a>
+                        </li>
+                        <li class="active">@ViewBag.PageName</li>
+                    </ul><!-- /.breadcrumb -->
+                </div>
+
+                <div class="page-content">
+                   <div class="page-header">
+                        <h1>
+                            <span>@ViewBag.PageName</span>
+                            <small>
+                                <i class="ace-icon fa fa-angle-double-right"></i>
+                                <span>@ViewBag.PageDescription</span>
+                            </small>
+                        </h1>
+                    </div><!-- /.page-header -->
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <!-- PAGE CONTENT BEGINS -->
+                            <section>
+                            @RenderBody()
+                            </section>
+                            @RenderSection("scripts", required: false)
+                            <!-- PAGE CONTENT ENDS -->
+                        </div><!-- /.col -->
+                    </div><!-- /.row -->
+                </div><!-- /.page-content -->
+            </div>
+         </div><!-- /.main-content -->
+    </div><!-- /.main-container -->
+   
+    <!-- basic scripts -->
+    <!--[if !IE]> -->
+    <script src="assets/js/jquery-2.1.4.min.js"></script>
+
+    <!-- <![endif]-->
+    <!--[if IE]>
+    <script src="/Scripts/jquery-1.11.3.min.js"></script>
+    <![endif]-->
+
+
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+    <!-- page specific plugin scripts -->
+    <!--[if lte IE 8]>
+      <script src="/Scripts/excanvas.min.js"></script>
+    <![endif]-->
+    <!-- ace scripts -->
+    <script src="~/Scripts/ace.min.js"></script>
+    <!-- inline scripts related to this page -->
+    <script type="text/javascript">
+			jQuery(function($) {
+				//show the dropdowns on top or bottom depending on window height and menu position
+				$('#task-tab .dropdown-hover').on('mouseenter', function(e) {
+					var offset = $(this).offset();
+
+					var $w = $(window)
+					if (offset.top > $w.scrollTop() + $w.innerHeight() - 100)
+						$(this).addClass('dropup');
+					else $(this).removeClass('dropup');
+				});
+
+			})
+    </script>
+</body>
+</html>

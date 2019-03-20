@@ -1,0 +1,21 @@
+﻿
+@{
+    Layout = null;
+}
+
+@{
+    ViewBag.Title = "DEMO purpose Email Link";
+}
+<h2>@ViewBag.Title.</h2>
+<p class="text-info">
+    抱歉您的邮箱尚未激活，无法登陆！请检查您的邮箱和垃圾箱查看是否有邮件
+</p>
+
+{
+    <p class="text-danger">
+        For DEMO only: You can click this link to confirm the email: <a href="@ViewBag.Link">link</a>
+        Please change this code to register an email service in IdentityConfig to send an email.
+    </p>
+
+}
+

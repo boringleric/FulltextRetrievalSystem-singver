@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/admin_Layout.cshtml";
+}
+
+<h3>你确认要删除此Html规则？？ </h3>
+<p>删除后将不会再继续解析该URI页面内容！！！</p>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.Label("将要删除的Html规则")
+        </dt>
+
+        <dd>
+            @ViewBag.Link
+        </dd>
+    </dl>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="删除Html规则" class="btn btn-default" /> |
+            @Html.ActionLink("返回Html规则列表", "Index")
+        </div>
+    }
+</div>
+
+<!--[if !IE]> -->
+<script src="~/Scripts/jquery-2.1.4.min.js"></script>
+<!-- <![endif]-->
+<!--[if IE]>
+<script src="/Scripts/jquery-1.11.3.min.js"></script>
+<![endif]-->
+
+<script type="text/javascript">
+$(function () {
+    $(".nav-list>li:eq(1)").addClass("active open").siblings().removeClass("active");
+    $(".submenu:eq(0)>li:eq(5)").addClass("active").siblings().removeClass("active");
+})
+</script>
+

@@ -1,0 +1,62 @@
+﻿
+@{
+    if (User.IsInRole("Admin"))
+    {
+        Layout = "~/Views/Shared/admin_Layout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/user_Layout.cshtml";
+    }
+}
+
+<p>
+    @Html.ActionLink("新建订阅", "Create")
+</p>
+
+<h4>
+    此处可添加订阅词或者订阅路径，订阅词可直接输入，订阅路径需要添加完整路径：
+    如订阅网站，需要输入"http://abc.com";订阅Ftp，输入"ftp://a/b/";订阅共享文件夹，输入"\\ip\a"。
+    否则会默认为订阅词！
+</h4>
+<table class="table">
+    @{int i = 0;}
+    @foreach (var item in ViewBag.SubList)
+    {
+        <tr>
+            <td>
+                <p hidden>@item.SubCount</p>
+                @(++i)、 &nbsp; 订阅词/路径: @item.SearchWord &nbsp; 添加时间: @item.AddTime
+            </td>
+            <td>
+                @Html.ActionLink("删除订阅", "Delete", new { item.SubCount, item.SearchWord })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<!--[if !IE]> -->
+<script src="~/Scripts/jquery-2.1.4.min.js"></script>
+<!-- <![endif]-->
+<!--[if IE]>
+<script src="/Scripts/jquery-1.11.3.min.js"></script>
+<![endif]-->
+
+@if (User.IsInRole("Admin"))
+{
+    <script type="text/javascript">
+    $(function () {
+        $(".nav-list>li:eq(3)").addClass("active").siblings().removeClass("active");
+        })
+    </script>
+}
+else
+{
+    <script type="text/javascript">
+    $(function () {
+        $(".nav-list>li:eq(1)").addClass("active").siblings().removeClass("active");
+        })
+    </script>
+}
+

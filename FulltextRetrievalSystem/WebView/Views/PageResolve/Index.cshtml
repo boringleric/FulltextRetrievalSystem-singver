@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/admin_Layout.cshtml";
+}
+
+<p>
+    @Html.ActionLink("新建Html规则", "Create")
+</p>
+<table class="table">
+    @{int i = 0;}
+    @foreach (var item in ViewBag.RuleList)
+    {
+        <tr>
+            <td>
+                @(++i)、 &nbsp; 链接: @item.Link &nbsp; 解析规则:@item.Rules
+            </td>
+            <td>
+                @Html.ActionLink("编辑Html规则", "Edit", new { item.Link })|
+                @Html.ActionLink("删除Html规则", "Delete", new { item.Link })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<!--[if !IE]> -->
+<script src="~/Scripts/jquery-2.1.4.min.js"></script>
+<!-- <![endif]-->
+<!--[if IE]>
+<script src="/Scripts/jquery-1.11.3.min.js"></script>
+<![endif]-->
+
+
+<script type="text/javascript">
+$(function () {
+    $(".nav-list>li:eq(1)").addClass("active open").siblings().removeClass("active");
+    $(".submenu:eq(0)>li:eq(5)").addClass("active").siblings().removeClass("active");
+})
+</script>
